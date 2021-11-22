@@ -1,0 +1,116 @@
+{
+  "title": "GDP per capita of Selected G20 Nations by HDI",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/azzam18/FIT3179_30462126_Ass2_Data/main/Dmgrphc_X.csv"
+  },
+  "width": 469,
+  "height": 300,
+  "layer": [
+    {
+      "encoding": {
+        "x": {"field": "year", "type": "temporal"},
+        "y": {
+          "field": "gdpPercap",
+          "type": "quantitative",
+          "title": "GDP per capita ($USD)"
+        },
+        "strokeDash": {
+          "field": "HDI",
+          "type": "nominal",
+          "title": "HDI Status"
+        },
+        "color": {
+          "field": "country",
+          "type": "nominal",
+          "title": "Country",
+          "scale": {
+            "domain": [
+              "United States",
+              "Canada",
+              "Australia",
+              "Korea, Rep.",
+              "Saudi Arabia",
+              "Turkey",
+              "Russia",
+              "India"
+            ],
+            "range": [
+              "#A04000",
+              "#515A5A",
+              "#1F618D",
+              "#F5B041",
+              "#85C1E9",
+              "#E74C3C",
+              "#1C2833",
+              "#7D3C98"
+            ]
+          }
+        }
+      },
+      "layer": [
+        {"mark": "line"},
+        {
+          "params": [
+            {
+              "name": "label",
+              "select": {
+                "type": "point",
+                "encodings": ["x"],
+                "nearest": true,
+                "on": "mouseover"
+              }
+            }
+          ],
+          "mark": "point",
+          "encoding": {
+            "opacity": {
+              "condition": {"param": "label", "empty": false, "value": 1},
+              "value": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "transform": [{"filter": {"param": "label", "empty": false}}],
+      "layer": [
+        {
+          "mark": {"type": "rule", "color": "gray"},
+          "encoding": {
+            "x": {
+              "type": "temporal",
+              "field": "year",
+              "aggregate": "min",
+              "title": "Year"
+            }
+          }
+        },
+        {
+          "encoding": {
+            "text": {"type": "quantitative", "field": "gdpPercap"},
+            "x": {"type": "temporal", "field": "year"},
+            "y": {"type": "quantitative", "field": "gdpPercap"}
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "text",
+                "stroke": "white",
+                "strokeWidth": 2,
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+              }
+            },
+            {
+              "mark": {"type": "text", "align": "left", "dx": 5, "dy": -5},
+              "encoding": {"color": {"type": "nominal", "field": "country"}}
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "config": {}
+}

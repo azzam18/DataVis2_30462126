@@ -1,0 +1,59 @@
+{
+  "title": "G20 Nations Inflation to Unemployment Rate (2018)",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/azzam18/FIT3179_30462126_Ass2_Data/main/G20_Economic_Data_Q1_2020_v1.csv"
+  },
+  "width": 544,
+  "height": 200,
+  "layer": [
+    {
+      "params": [{"name": "grid", "select": "interval", "bind": "scales"}],
+      "mark": "circle",
+      "encoding": {
+        "x": {
+          "field": "Unemployment",
+          "type": "quantitative",
+          "title": "Unemployment (%)",
+          "scale": {"domain": [-2, 30]}
+        },
+        "y": {
+          "field": "Inflation",
+          "type": "quantitative",
+          "title": "Inflation (%)",
+          "scale": {"domain": [-1, 15]}
+        },
+        "color": {
+          "field": "HDI",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Developed", "Developing"],
+            "range": ["#1569C7", "#FF7722"]
+          },
+          "title": "HDI Status"
+        },
+        "size": {
+          "field": "Population",
+          "type": "quantitative",
+          "scale": {"range": [0, 750]},
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal", "title": "Country"},
+          {
+            "field": "Population",
+            "type": "nominal",
+            "title": "Population (million)"
+          },
+          {"field": "Inflation", "type": "nominal", "title": "Inflation (%)"},
+          {
+            "field": "Unemployment",
+            "type": "nominal",
+            "title": "Unemployment (%)"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {}
+}

@@ -1,0 +1,41 @@
+{
+  "title": "GDP (per capita) Trend(s) by Economic Development",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Plot showing average data with raw values in the background.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/azzam18/FIT3179_30462126_Ass2_Data/main/Dmgrphc_G20.csv"
+  },
+  "width": 468,
+  "height": 300,
+  "layer": [
+    {
+      "mark": {"type": "point", "opacity": 0.3},
+      "encoding": {
+        "x": {"field": "year", "type": "temporal", "title": "Year"},
+        "y": {
+          "field": "gdpPercap",
+          "type": "quantitative",
+          "title": "GDP per capita ($USD)"
+        },
+        "color": {
+          "field": "HDI",
+          "type": "nominal",
+          "title": "HDI Status & Mean Line"
+        },
+        "tooltip": [
+          {"field": "country", "title": "Country"},
+          {"field": "gdpPercap", "title": "GDP per capita ($USD)"}
+        ]
+      }
+    },
+    {
+      "mark": "line",
+      "encoding": {
+        "x": {"field": "year", "type": "temporal"},
+        "y": {"aggregate": "mean", "field": "gdpPercap"},
+        "color": {"field": "HDI", "type": "nominal"}
+      }
+    }
+  ],
+  "config": {}
+}

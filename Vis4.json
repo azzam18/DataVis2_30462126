@@ -1,0 +1,27 @@
+{
+  "title": "Range of GDP per capita levels of Certain G20 Nations",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A horizontal box plot showing median, min, and max GDP per capita of certain G20 nations.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/azzam18/FIT3179_30462126_Ass2_Data/main/Dmgrphc_Alt.csv"
+  },
+  "width": 451,
+  "height": 205,
+  "mark": {"type": "boxplot", "extent": "min-max"},
+  "encoding": {
+    "y": {
+      "field": "country",
+      "type": "nominal",
+      "sort": "-",
+      "title": "Country"
+    },
+    "color": {"field": "HDI", "type": "nominal", "title": "HDI Status"},
+    "x": {
+      "field": "gdpPercap",
+      "type": "quantitative",
+      "scale": {"zero": false},
+      "title": "GDP per capita ($USD)"
+    }
+  },
+  "config": {}
+}
